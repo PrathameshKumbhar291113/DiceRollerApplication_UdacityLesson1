@@ -11,19 +11,19 @@ import java.util.Random
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var dice_img : ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val rollButton = findViewById<Button>(R.id.rollBtn)
         rollButton.setOnClickListener {
-            Toast.makeText(this, "Hello Brp you licked the button", Toast.LENGTH_SHORT).show()
             rollDice()
         }
-
+        dice_img = findViewById(R.id.dice_image)
     }
 
     private fun rollDice() {
-        val diceImage: ImageView = findViewById(R.id.dice_image)
         val resultText: TextView = findViewById(R.id.textView)
         val randInt = Random().nextInt(6) +1
         resultText.text = randInt.toString()
@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-        diceImage.setImageResource(drawableResource)
+        Toast.makeText(this, "You got $randInt", Toast.LENGTH_SHORT).show()
+        dice_img.setImageResource(drawableResource)
     }
 
 }
